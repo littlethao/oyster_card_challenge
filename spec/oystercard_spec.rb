@@ -6,7 +6,7 @@ describe Oystercard do
   end
 
   describe '#top_up' do
-    it 'tops up Oystercard by amount 20' do
+    it 'tops up Oystercard by amount £20' do
       expect { subject.top_up(20) }.to change{subject.balance}.by(20)
     end
 
@@ -18,7 +18,7 @@ describe Oystercard do
   end
 
   describe '#deduct' do
-    it 'deducts journey fare by amount 10' do
+    it 'deducts journey fare by amount £10' do
       subject.top_up(20)
       expect { subject.deduct(10) }.to change{subject.balance}.by(-10)
     end
@@ -26,8 +26,13 @@ describe Oystercard do
 
   describe '#touch_in' do
     it 'shows the cardholder is in journey' do
+      subject.top_up(20)
       subject.touch_in
       expect(subject).to be_in_journey
+    end
+
+    it 'raises an error when the balance is less than £1 when touching in' do
+      expect{subject.touch_in}.to raise_error 'Balance low!'
     end
   end
 
