@@ -15,20 +15,22 @@ attr_reader :balance
     @balance += amount
   end
 
-  def deduct(amount)
-    @balance -= amount
-  end
-
   def touch_in
     fail 'Balance low!' if @balance < MINIMUM_FARE
     @in_journey = true
   end
 
   def touch_out
+    deduct(MINIMUM_FARE)
     @in_journey = false
   end
 
   def in_journey?
     @in_journey
+  end
+
+
+  def deduct(amount)
+    @balance -= amount
   end
 end
