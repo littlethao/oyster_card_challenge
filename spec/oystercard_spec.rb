@@ -4,6 +4,7 @@ require 'oystercard.rb'
 describe Oystercard do
   let(:entry_station) {double :station}
   let(:exit_station) {double :station}
+  let(:journey){ {entry: entry_station, exit: exit_station}}
 
   it 'checks default balance of Oystercard is 0' do
     expect(subject.balance).to eq 0
@@ -17,8 +18,6 @@ describe Oystercard do
     expect{ subject.top_up 1 }.to change{ subject.balance }.by 1
   end
 
-  let(:journey){ {entry: entry_station, exit: exit_station}}
-
   it 'checks that touching in and out creates one journey' do
     subject.top_up(20)
     subject.touch_in(entry_station)
@@ -27,13 +26,13 @@ describe Oystercard do
   end
 
     describe '#top_up' do
-
       before do
         subject.top_up(Oystercard::BALANCE_LIMIT)
       end
 
       it 'will not allow a balance to exceed 90' do
-        expect{ subject.top_up 1 }.to raise_error "Your top up will exceed balance limit of #{Oystercard::BALANCE_LIMIT}!"
+        message = "Your top up will exceed balance limit of #{Oystercard::BALANCE_LIMIT}!"
+        expect{ subject.top_up 1 }.to raise_error message
       end
     end
 
