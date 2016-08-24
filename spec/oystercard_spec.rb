@@ -64,6 +64,7 @@ describe Oystercard do
     end
 
     it 'sends a finish message to journey class' do
+      allow(Journey).to receive(:new) {journey}
       subject.top_up(20)
       subject.touch_out(station)
       expect(journey).to have_received(:finish)
