@@ -34,6 +34,15 @@ describe Journey do
     expect(journey.instance_variable_get(:@journeys)).to include(:start_station => station, :end_station => station)
   end
 
+  describe 'fare' do
+    it 'charges a penalty if no station' do
+      expect(journey.fare).to eq Journey::PENALTY_FARE
+    end
+    it 'charges a minimum fare when station is present' do
+      journey.start(station)
+      expect(journey.fare).to eq Journey::MINIMUM_FARE
+    end
+  end
   it 'charges a penalty fare if you have already started a journey' do
     expect(journey.start(station)).to eq Journey::PENALTY_FARE
   end
