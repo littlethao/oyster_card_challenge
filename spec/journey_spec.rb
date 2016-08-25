@@ -5,17 +5,17 @@ describe Journey do
   let(:station) { double :station}
 
   it 'not to be in journey at initialisation point' do
-    expect(subject.in_journey?).to eq false
+    expect(subject.in_journey?).to be false
   end
 
   it "changes the in_journey status to true when journey starts" do
     subject.start(station)
-    expect(subject).to be_in_journey
+    expect(subject.in_journey?).to be true
   end
 
   it 'isn\'t in journey anymore when touch out' do
     subject.finish(station)
-    expect(subject).not_to be_in_journey
+    expect(subject.in_journey?).to be false
   end
 
   it 'stores station argument' do
@@ -28,13 +28,10 @@ describe Journey do
     expect(subject.instance_variable_get(:@end_station)).to eq station
   end
 
-  it 'creates empty array of all journeys' do
-    expect(subject.instance_variable_get(:@journeys)).to eq []
-  end
 
   it 'creates a hash inside an @journey array for each journey with entry station and exit station' do
     subject.start(station)
     subject.finish(station)
-    expect(subject.instance_variable_get(:@journeys)[-1]).to include(:in => station, :out => station)
+    expect(subject.instance_variable_get(:@journeys)).to include(:start_station => station, :end_station => station)
   end
 end
