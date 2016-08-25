@@ -30,6 +30,13 @@ attr_reader :journeys
     @journeys = {start_station: @start_station, end_station: @end_station}
   end
 
+  def fare
+    if @start_station.nil? && @end_station.nil?
+      PENALTY_FARE
+    else
+      MINIMUM_FARE
+    end  
+  end
 
 private
 

@@ -38,24 +38,10 @@ describe Journey do
     it 'charges a penalty if no station' do
       expect(journey.fare).to eq Journey::PENALTY_FARE
     end
+
     it 'charges a minimum fare when station is present' do
       journey.start(station)
       expect(journey.fare).to eq Journey::MINIMUM_FARE
     end
-  end
-  it 'charges a penalty fare if you have already started a journey' do
-    expect(journey.start(station)).to eq Journey::PENALTY_FARE
-  end
-
-  it 'doesn\'t charge you if this is a new journey' do
-
-  end
-
-  it 'charges you a penalty fare if you try to finish without starting' do
-
-  end
-
-  it 'charges you a minimum fare for completing a full journey' do
-
-  end
+  end  
 end
