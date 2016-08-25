@@ -1,6 +1,10 @@
 
 # => Knows everything about a journey
 class Journey
+
+MINIMUM_FARE = 1
+PENALTY_FARE = 6
+
 attr_reader :start_station
 attr_reader :journeys
   def initialize
