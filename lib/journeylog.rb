@@ -12,8 +12,8 @@ class Journeylog
  end
 
  def start(station)
+   @journey_class.new(station)
    @current_journey[:start_station] = station
-   Journey.new(station)
  end
 
  def finish(station)

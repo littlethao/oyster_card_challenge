@@ -1,6 +1,10 @@
 require 'journeylog'
 
 describe Journeylog do
+
+  let(:journey) { double :journey }
+  let(:journey_class) {double :journey_class, new: journey}
+  subject {described_class.new(journey_class: journey_class)}
   let(:start_station) {double :start_station }
   let(:end_station) {double :end_station }
 
@@ -23,5 +27,8 @@ describe Journeylog do
   it 'should start a new journey with an entry station' do
     expect(subject.start(station)).to eq ([station])
   end
+
+
+
 
 end

@@ -7,11 +7,11 @@ PENALTY_FARE = 6
 
 # attr_reader :start_station
  attr_reader :journeys
-  def initialize
+  def initialize(start_station)
     @in_journey = false
-    @start_station = nil
+    @start_station = start_station
     @end_station = nil
-    @journeys = {start_station: @start_station, end_station: @end_station}
+  #  @journeys = {start_station: @start_station, end_station: @end_station}
   end
 
   def in_journey?(start_station)
