@@ -6,7 +6,7 @@ MINIMUM_FARE = 1
 PENALTY_FARE = 6
 
 # attr_reader :start_station
-# attr_reader :journeys
+ attr_reader :journeys
   def initialize
     @in_journey = false
     @start_station = nil
