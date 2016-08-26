@@ -1,7 +1,7 @@
 class Journeylog
 
- def initialize(journey_class: 'station' )
-    @journey_class = journey_class
+ def initialize()
+#    @journey_class = Journey.new
     @journeys = []
  end
 

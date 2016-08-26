@@ -21,7 +21,7 @@ MINIMUM_BALANCE = 1
 
   def touch_in(station)
     fail 'below minimum balance' if empty?
-    journey = Journey.new
+    #journey = Journey.new
     @journeylog.start(station)
     # @entry_station = station
     # @current_journey.start(station)
@@ -39,7 +39,7 @@ MINIMUM_BALANCE = 1
   attr_reader :balance
 
   def deduct
-    @balance -= journey.fare
+    @balance -= @journeylog.calculate_fare
   end
 
   def full?(amount)
